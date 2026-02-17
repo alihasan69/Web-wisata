@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+      Formulir Pemesanan Taman nasional Tanjung puting</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Formulir Pemesanan Tiket</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Kembali ke Home</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container">
+<section>
+<h3>Isi Data Anda</h3>
+
+<form id="myForm">
+
+<input type="hidden" name="id_partner" value="TRAVEL2026">
+
+<div class="form-group">
+    <label>Nama lengkap</label>
+    <input type="nama" name="Nama lengkap" placeholder="Nama lengkap anda" required>
+</div>
+
+
+<div class="form-group">
+    <label>Email</label>
+    <input type="email" name="email" required>
+</div>
+
+<div class="form-group">
+    <label>Telepon</label>
+    <input type="number" name="number" required>
+</div>
+
+<div class="form-group">
+    <label>Alamat</label>
+    <textarea name="alamat" required></textarea>
+</div>
+
+<div class="form-group">
+    <label>Desa</label>
+    <input type="text" name="desa" required>
+</div>
+
+<div class="form-group">
+    <label>Kecamatan</label>
+    <input type="text" name="kecamatan" required>
+</div>
+
+<div class="form-group">
+    <label>Kabupaten/Kota</label>
+    <input type="text" name="kota" required>
+</div>
+
+<div class="form-group">
+    <label>Provinsi</label>
+    <input type="text" name="provinsi" required>
+</div>
+
+<div class="form-group">
+    <label>Kode Pos</label>
+    <input type="number" name="kodepos" required>
+</div>
+
+<div class="form-group">
+    <label>Buat PIN</label>
+    <input type="password" name="password" placeholder="minimal 6 digit" required>
+</div>
+
+<div class="form-group">
+    <label>Lokasi Penjemputan</label>
+    <select name="lokasi_penjemputan" required>
+        <option value="">Pilih Lokasi</option>
+        <option value="Bandara Ngurah Rai - Bali">Bandara Ngurah Rai - Bali</option>
+        <option value="Pelabuhan Benoa - Bali">Pelabuhan Benoa - Bali</option>
+        <option value="Bandara Soekarno Hatta - Jakarta">Bandara Soekarno Hatta - Jakarta</option>
+        <option value="Stasiun Gambir - Jakarta">Stasiun Gambir - Jakarta</option>
+        <option value="Stasiun Pasar Senen - Jakarta">Stasiun Pasar Senen - Jakarta</option>
+        <option value="Bandara YIA - Yogyakarta">Bandara YIA - Yogyakarta</option>
+        <option value="Stasiun Tugu - Yogyakarta">Stasiun Tugu - Yogyakarta</option>
+        <option value="Bandara Juanda - Surabaya">Bandara Juanda - Surabaya</option>
+        <option value="Stasiun Gubeng - Surabaya">Stasiun Gubeng - Surabaya</option>
+        <option value="Pelabuhan Tanjung Perak - Surabaya">Pelabuhan Tanjung Perak - Surabaya</option>
+        <option value="Bandara Husein Sastranegara - Bandung">Bandara Husein Sastranegara - Bandung</option>
+        <option value="Stasiun Bandung - Bandung">Stasiun Bandung - Bandung</option>
+
+    </select>
+</div>
+
+<div class="form-group">
+    <label>Tanggal Keberangkatan</label>
+    <input type="date" name="tanggal" required>
+</div>
+
+<div class="form-group">
+    <label>Jam Kumpul</label>
+    <input type="time" name="jam" required>
+</div>
+
+<div class="form-group">
+    <label>Jumlah Peserta (1-20)</label>
+    <input type="number" name="jumlah" min="1" max="20" required>
+</div>
+
+<div class="form-group">
+    <label>Link Referensi untuk fasilitas Ekstra </label>
+    <input type="url" name="website" required>
+</div>
+
+<div class="form-group">
+    <label>Pilih Warna Seragam</label>
+    <input type="color" name="warna">
+</div>
+
+<div class="form-group">
+    <label>Metode Pembayaran</label><br>
+    <input type="radio" name="pembayaran" value="Full Payment" required> Full Payment
+    <input type="radio" name="pembayaran" value="DP 50%"> DP 50%
+</div>
+
+<div class="form-group">
+    <label>Fasilitas Ekstra</label><br>
+    <input type="checkbox" name="fasilitas" value="Sewa Kamera"> Sewa Kamera
+    <input type="checkbox" name="fasilitas" value="Paket Makan Romantis"> Paket Makan Romantis
+</div>
+
+<div class="form-group">
+    <label>Upload KTP/Identitas diri</label>
+    <input type="file" name="legalitas" required>
+</div>
+
+<input type="reset" value="Reset">
+<input type="submit" value="Kirim">
+
+</form>
+
+<div id="output"></div>
+
+</section>
+</div>
+
+<script>
+document.getElementById("myForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    let hasil = "<h3>Data yang Dikirim:</h3>";
+
+    for (let [key, value] of formData.entries()) {
+        hasil += key + " : " + value + "<br>";
+    }
+
+    document.getElementById("output").innerHTML = hasil;
+
+    localStorage.setItem("formData", hasil);
+
+    alert("Data berhasil dikirim!");
+});
+
+window.onload = function(){
+    if(localStorage.getItem("formData")){
+        document.getElementById("output").innerHTML = localStorage.getItem("formData");
+    }
+};
+</script>
+</body>
+</html>
